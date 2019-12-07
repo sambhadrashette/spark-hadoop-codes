@@ -1,12 +1,13 @@
-val file = sc.textFile("/home/spark/hadoop-2.7.3/LICENSE.txt")
+file = sc.textFile("/home/spark/hadoop-2.7.3/LICENSE.txt")
 
-val lines = file.map(line => line.toLowerCase)
+lines = file.map(lambda line: line.lower())
 
-val words = lines.flatMap(line => line.split("[^a-z]"))
+words = lines.flatMap(lambda line: line.split())
 
-val word1s = words.map(word => (word,1))
+word1s = words.map(lambda word: (word,1))
 
-val wordcounts = word1s.reduceByKey(_ + _)
+wordcounts = word1s.reduceByKey(lambda acc,cnt: acc + cnt)
 
-wordcounts.foreach(println)
+result = wordcounts.collect()
 
+print(result)
