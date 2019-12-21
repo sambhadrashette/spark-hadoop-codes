@@ -1,6 +1,4 @@
-from pyspark import SparkConf
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import *
 
 spark = SparkSession.builder \
     .master("local[2]") \
@@ -26,9 +24,8 @@ ratings.printSchema()
 
 result = ratings.select("movieId", "rating") \
     .groupBy("movieId") \
-    .avg("rating")\
+    .avg("rating") \
     .sort("avg(rating)", ascending=False)
-
 
 result.show()
 

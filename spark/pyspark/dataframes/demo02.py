@@ -7,7 +7,6 @@ spark = SparkSession.builder \
     .config("spark.sql.shuffle.partitions", "4") \
     .getOrCreate()
 
-
 # Define schema data types
 emp_schema = StructType([
     StructField("empno", IntegerType(), False),
